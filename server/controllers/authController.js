@@ -58,9 +58,9 @@ exports.login = async (req, res, next) => {
 exports.logout = (req, res, next) => {
     let options =  {
         httpOnly: true,
-        secure: false, // Recommended for production
-        sameSite: 'Lax', // If your frontend and backend are on different domains
-        path: '/' // Ensure this matches the path used when the cookie was set
+        secure: true, 
+        sameSite: 'none', 
+        path: '/' 
     }
      if (process.env.NODE_ENV === 'production') {
         options.secure = true;
@@ -92,8 +92,8 @@ const sendTokenResponse = (user, statusCode, res) => {
         expires: new Date(
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
         ),
-        secure: false, // Recommended for production
-        sameSite: 'Lax',
+        secure: true,
+        sameSite: 'none',
         httpOnly: true,
         path:"/"
     };
