@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
     const checkUserLoggedIn = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/auth/me', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     const register = async (userData) => {
         setError(null);
         try {
-            const res = await fetch('http://localhost:5000/api/auth/register', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         setError(null);
         try {
-            const res = await fetch('http://localhost:5000/api/auth/login', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await fetch('http://localhost:5000/api/auth/logout', {});
+            await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {});
             setUser(null);
         } catch (err) {
             console.error(err);
