@@ -6,6 +6,8 @@ The goal of this assignment is to demonstrate how modern applications should han
 ## FRONTEND VIEW :
 ![alt text](image-2.png)
 ![alt text](image-3.png)
+<img width="1688" height="650" alt="image" src="https://github.com/user-attachments/assets/8e51d952-a301-4179-a281-2a8c3d4cf408" />
+
 
 ## 🚀 Tech Stack
 
