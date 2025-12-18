@@ -56,10 +56,17 @@ exports.login = async (req, res, next) => {
 
 
 exports.logout = (req, res, next) => {
-    res.cookie('token', 'none', {
-        expires: new Date(Date.now() + 10 * 1000),
+    let options =  {
         httpOnly: true,
-    });
+        secure: false, // Recommended for production
+        sameSite: 'Lax', // If your frontend and backend are on different domains
+        path: '/' // Ensure this matches the path used when the cookie was set
+    }
+     if (process.env.NODE_ENV === 'production') {
+        options.secure = true;
+    }
+
+    res.clearCookie('token',options);
 
     res.status(200).json({ success: true, data: {} });
 };
@@ -85,7 +92,10 @@ const sendTokenResponse = (user, statusCode, res) => {
         expires: new Date(
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
         ),
+        secure: false, // Recommended for production
+        sameSite: 'Lax',
         httpOnly: true,
+        path:"/"
     };
 
     if (process.env.NODE_ENV === 'production') {
